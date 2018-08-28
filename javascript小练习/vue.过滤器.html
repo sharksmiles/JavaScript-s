@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{date|formatDate}}
+</div>
+<script src='./vue.js'></script>
+<script>
+    var padDate =function (value) {
+        //console.log(value);
+        return value<10 ? '0' +value: value;
+    };
+    var app=new Vue({
+        el:'#app',
+        data:{
+            date:new Date()
+        },
+        filters:{
+            formatDate: function (value) {
+                var date =new Date(value);
+                //console.log(date);
+                var year=date.getFullYear();
+                //console.log(year);
+                var month=padDate(date.getMonth()+1);
+                //console.log(date.getMonth());
+                //console.log(month);
+                var day=padDate(date.getDate());
+                var hours=padDate(date.getHours());
+                var minutes=padDate(date.getMinutes());
+                var seconds=padDate(date.getSeconds());
+                return year +'-'+month+'-'+day+'  '+hours+':'+minutes+':'+seconds;
+            }
+        },
+        mounted:function () {
+            var _this=this;
+            this.timer=setInterval(function () {
+                _this.date=new Date();
+                //console.log(_this.date);
+            },1000);
+        },
+        beforeDestroy:function () {
+            if (this.timer){
+                clearInterval(this.timer);
+            }
+
+        }
+    })
+</script>
+</body>
+</html>
