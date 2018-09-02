@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title></title>
 </head>
+
 <body>
-$END$
+
+<input type="checkbox" name="hell" value="选中1">
+
+<input type="checkbox" name="hell" value="选中2">
+
+<input type="checkbox" name="hell" value="选中3">
+
+<input type="checkbox" name="hell" value="选中4">
+
+<button onclick="fun()">测试</button>
+
+<script type="text/javascript">
+
+    function fun(){
+        alert(Lond_ckeck('hell'))//id)
+    }
+    function Lond_ckeck(objname){
+
+        obj = document.getElementsByName(objname);
+
+        checkval = [];
+
+        for(k in obj){
+
+            if(obj[k].checked)
+                console.log(obj[k]);
+            checkval.push(obj[k].value);
+        }
+        return checkval;
+    }
+</script>
 </body>
 </html>
+

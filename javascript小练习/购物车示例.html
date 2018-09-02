@@ -30,7 +30,7 @@
         <table>
             <thead>
             <tr>
-                <th style="font-size: 12px"><input type="checkbox">全选</th>
+                <th style="font-size: 12px"><input type="checkbox" @click="checkAll" v-model="ischeckall">全选</th>
                 <th></th>
                 <th>商品名称</th>
                 <th>商品单价</th>
@@ -40,7 +40,7 @@
             </thead>
             <tbody>
             <tr v-for="(item,index) in list">
-                <td style="text-align: center"><input type="checkbox" value="item.name"></td>
+                <td style="text-align: center"><input type="checkbox" :value="item.id" v-model="checked"/></td>
                 <td>{{index+1}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.price}}</td>
@@ -85,17 +85,17 @@
                     price:21488,
                     count:1
                 }
-            ]
+            ],
+            checked:[],
+            ischeckall:false
         },
         computed:{
             totalPrice:function () {
                 var  total=0;
-                var checked=document.getElementsByTagName('input');
                 for (var i=0;i<this.list.length;i++){
                     var item =this.list[i];
                     total+=item.price*item.count;
                 }
-                console.log(checked.length);
                 return total.toString().replace(/\B(?=(\d{3})+$)/g,',');
             }
         },
@@ -109,6 +109,20 @@
             },
             handleRemove:function (index) {
                 this.list.splice(index,1);
+            },
+            checkAll:function () {
+                var _this=this;
+                if(this.ischeckAll){
+                    this.checked=[];
+                }else{
+                    this.checked=[];
+                    this.list.forEach(function(item){
+                        _this.checked.push(item.id)
+                    })
+                }
+                if(this.checked.length==this.list.length){
+                    this.ischeckall=true;
+                }
             }
         }
     });

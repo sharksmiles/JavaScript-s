@@ -8,8 +8,8 @@
 <div id="app">
     <child-component>
         <h2 slot="header">标题</h2>
-        <p>正文</p>
-        <p>更多的正文内容</p>
+        <!--<p>正文</p>-->
+        <!--<p>更多的正文内容</p>-->
         <div slot="footer">底部信息</div>
     </child-component>
 </div>
@@ -17,9 +17,9 @@
 <script>
     Vue.component('child-component',{
         template:'<div class="container">' +
-            '<div class="header"><slot name="header">ASDFGH</slot></div>'+
-            '<div class="main"><slot>ASDFGHJKNNNNNN</slot></div>'+
-            '<div class="footer"><slot name="footer">ASDFGHJJHBB</slot></div>'+
+            '<div class="header"><slot name="header">HEADER</slot></div>'+
+            '<div class="main"><slot>MAIN</slot></div>'+
+            '<div class="footer"><slot name="footer">Footer</slot></div>'+
             '</div>'
     });
     var app=new Vue({
