@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            vertical-align: top;
+        }
+
+        body{
+            background: url("image/1.jpg") no-repeat;
+            background-size:cover;
+        }
+
+        #box{
+            background-color: rgba(255, 255, 255, .5);
+        }
+
+        #box ul{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            cursor: pointer;
+        }
+
+
+        #box ul li img{
+            width: 180px;
+            height: 120px;
+
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="image/1.jpg" alt=""></li>
+            <li><img src="image/2.jpg" alt=""></li>
+            <li><img src="image/3.jpg" alt=""></li>
+            <li><img src="image/4.jpg" alt=""></li>
+            <li><img src="image/5.jpg" alt=""></li>
+        </ul>
+    </div>
+
+<script>
+    window.onload = function () {
+        // 1. 获取需要的标签
+        var box = document.getElementById("box");
+        var allLis = box.getElementsByTagName("li");
+
+        // 2. 遍历监听
+        for(var i=0; i<allLis.length; i++){
+            // 2.1 取到当个li
+            var sLi = allLis[i];
+            sLi.index = i+1;
+            // 2.2 绑定事件
+            sLi.onclick = function () {
+                document.body.style.background = 'url("image/'+ this.index +'.jpg") no-repeat';
+                document.body.style.backgroundSize='cover';
+            }
+        }
+    }
+</script>
+</body>
+</html>

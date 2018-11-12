@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #panel{
+            width: 400px;
+            box-shadow: 0 0 10px #000;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        .panel-header{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .panel-footer{
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="panel">
+    <section class="panel-header">
+        <h2>歌曲排行版</h2>
+        <hr>
+    </section>
+    <section class="panel-content">
+        <input type="checkbox">1.时间都去哪了<br>
+        <input type="checkbox">2.海阔天空<br>
+        <input type="checkbox">3真的爱你<br>
+        <input type="checkbox">4.不再犹豫<br>
+        <input type="checkbox">5.光辉岁月<br>
+        <input type="checkbox">6.喜欢妳<br>
+        <input type="checkbox">7.偏偏喜欢你<br>
+        <input type="checkbox">8.爱拼才会赢<br>
+        <input type="checkbox">9.老街<br>
+    </section>
+    <section class="panel-footer">
+        <hr>
+        <button id="allSelect">全选</button>
+        <button id="cancelSelect">取消选中</button>
+        <button id="reverseSelect">反选</button>
+    </section>
+</div>
+<script>
+    window.onload = function () {
+        // 1. 获取所有的复选框
+        var inputs = document.querySelectorAll('input');
+
+        // 2. 全选
+        $("allSelect").onclick = function () {
+            for(var i=0; i<inputs.length; i++){
+                inputs[i].checked = true;
+            }
+        };
+
+        // 3. 取消选中
+        $("cancelSelect").onclick = function () {
+            for(var i=0; i<inputs.length; i++){
+                inputs[i].checked = false;
+            }
+        };
+
+        // 4. 反选
+        $("reverseSelect").onclick = function () {
+            for(var i=0; i<inputs.length; i++){
+                inputs[i].checked = !inputs[i].checked;
+            }
+        };
+
+        function $(id) {
+            return typeof id === "string" ? document.getElementById(id) : null;
+        }
+    }
+</script>
+</body>
+</html>

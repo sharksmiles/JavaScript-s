@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    // 1.字符串
+    var str = "Hello World!";
+    var str1 = "你好,世界!12121";
+
+    /* console.log(str.length);
+     console.log(str1.length * 2 - 2);*/
+
+    console.log(getStrLength(str1));
+    console.log(getStrLength(str));
+
+    /**
+     * 获取字符串的真实长度
+     * @param {string}str
+     * @returns {number}
+     */
+    function getStrLength(str) {
+        // 1.定义变量
+        var len = 0, code = 0;
+
+        // 2. 遍历
+        for (var i = 0; i < str.length; i++) {
+            // 2.1 Unicode码
+            code = str.charCodeAt(i);
+            // console.log(code);
+
+            // 2.2 判断
+            if (code >= 0 && code <= 127) {
+                len += 1;
+            } else {
+                len += 2;
+            }
+        }
+
+        // 3. 返回长度
+        return len;
+    }
+</script>
+</body>
+</html>

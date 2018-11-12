@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #prompt{
+            font-size: 13px;
+            color: darkgray;
+        }
+
+        #score{
+            border:1px solid darkgray;
+        }
+
+        .right{
+            background: url("image/right.png") no-repeat 5px center;
+            background-size:15px 15px;
+            padding-left: 20px;
+            color: lightgreen !important;
+        }
+
+        .error{
+            background: url("image/error.png") no-repeat 5px center;
+            background-size:15px 15px;
+            padding-left: 20px;
+            color: red !important;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <label>您的成绩:</label>
+    <input id="score" type="text" placeholder="请输入分数">
+    <span id="prompt">请输入您的成绩!</span>
+</div>
+<script>
+    window.onload = function () {
+        // 当输入框失去焦点
+        $('score').onblur = function () {
+            // 1. 获取输入的内容
+            var value = parseFloat($("score").value);
+
+            // 2.验证
+            if(isNaN(value)){ // 不是一个数
+                /* $('prompt').innerText = "输入成绩不正确";
+                 $('prompt').className = 'error';
+                 $('score').style.borderColor = 'red';*/
+                dealStyle('输入成绩不正确', 'error', 'red');
+            }else if(value >= 0 && value <= 100){ // 合法的
+                /*$('prompt').innerText = "输入成绩正确";
+                 $('prompt').className = 'right';
+                 $('score').style.borderColor = 'lightgreen';*/
+                dealStyle('输入成绩正确', 'right', 'lightgreen');
+            }else { // 超出
+                /*$('prompt').innerText = "成绩必须在0-100之间";
+                 $('prompt').className = 'error';
+                 $('score').style.borderColor = 'red';*/
+                dealStyle('成绩必须在0-100之间', 'error', 'red');
+            }
+
+        };
+
+        // 当输入框获得焦点
+        $('score').onfocus = function () {
+            /*$('prompt').innerText = "请输入您的成绩!";
+             $('prompt').className = '';
+             $('score').style.borderColor = 'darkgray';*/
+            $('score').style.outline = 'none';
+            $('score').value = '';
+            dealStyle("请输入您的成绩!", '', 'darkgray');
+        };
+
+        /**
+         * 处理公共的样式
+         * @param {string}msg
+         * @param {string}className
+         * @param {string}color
+         */
+        function dealStyle(msg, className, color) {
+            $('prompt').innerText = msg;
+            $('prompt').className = className;
+            $('score').style.borderColor = color;
+        }
+    };
+
+    function $(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+</body>
+</html>

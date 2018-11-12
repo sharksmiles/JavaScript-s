@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box{
+            border: 1px solid #cccccc;
+
+            width: 360px;
+            height: 70px;
+
+            padding-top: 360px;
+            margin: 100px auto;
+
+            background: url("images/01big.jpg") no-repeat;
+        }
+
+        ul{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li><img src="images/01.jpg" alt=""></li>
+        <li><img src="images/02.jpg" alt=""></li>
+        <li><img src="images/03.jpg" alt=""></li>
+        <li><img src="images/04.jpg" alt=""></li>
+        <li><img src="images/05.jpg" alt=""></li>
+    </ul>
+</div>
+<script>
+    var box=document.getElementById("box");
+    var allLi=box.getElementsByTagName("li");
+    for(var i=0;i<allLi.length;i++){
+        allLi[i].index = i+1;
+        allLi[i].onmouseover = function () {
+            box.style.background = 'url("images/0'+ this.index +'big.jpg") no-repeat';
+        }
+    }
+</script>
+
+</body>
+</html>
